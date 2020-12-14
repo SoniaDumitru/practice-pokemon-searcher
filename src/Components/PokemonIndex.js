@@ -13,10 +13,12 @@ useEffect(() => {
     },[]
 )  
 
-console.log(allPokemons)
 return(
         <div>
-            <PokemonCollection/>
+            <h1>Pokemon Searcher</h1><br/>
+            <PokemonCollection
+                allPokemons={allPokemons}
+            />
         </div>
     )
 }
