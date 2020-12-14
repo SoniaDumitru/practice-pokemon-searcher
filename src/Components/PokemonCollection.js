@@ -1,6 +1,6 @@
-import React from 'react'
-import PokemonCard from './PokemonCard'
-import { Card } from 'semantic-ui-react'
+import React from 'react';
+import PokemonCard from './PokemonCard';
+import { Card } from 'semantic-ui-react';
 
 const PokemonCollection = ({ pokemon }) => (
   <Card.Group itemsPerRow={6}>

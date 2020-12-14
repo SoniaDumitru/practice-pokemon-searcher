@@ -1,8 +1,8 @@
-import React from 'react'
-import PokemonCollection from './PokemonCollection'
-import PokemonForm from './PokemonForm'
-import { Search } from 'semantic-ui-react'
-import _ from 'lodash'
+import React from 'react';
+import PokemonCollection from './PokemonCollection';
+import PokemonForm from './PokemonForm';
+import { Search } from 'semantic-ui-react';
+import _ from 'lodash';
 
 class PokemonIndex extends React.Component {
   state = {
@@ -41,4 +41,4 @@ class PokemonIndex extends React.Component {
   }
 }
 
-export default PokemonIndex
+export default PokemonIndex;
