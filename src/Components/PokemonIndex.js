@@ -1,48 +1,44 @@
-import React from 'react';
-import PokemonCollection from './PokemonCollection';
-import PokemonForm from './PokemonForm';
+import React from 'react'
+import PokemonCollection from './PokemonCollection'
+import PokemonForm from './PokemonForm'
 import { Search } from 'semantic-ui-react'
-import _ from 'lodash';
+import _ from 'lodash'
 
 class PokemonIndex extends React.Component {
-    state = {
-        allPokemons: [],
-        searchValue: ''
-    }
+  state = {
+    allPokemons: [],
+    searchTerm: ''
+  }
 
-componentDidMount() {
-        const url = 'http://localhost:3000/pokemon';
-        fetch(url)
-        .then(response => response.json())
-        .then(data =>this.setState({ allPokemons: data }))
-        .catch(event => console.error(event))
-}  
+  componentDidMount() {
+    fetch('http://localhost:3000/pokemon')
+      .then(res => res.json())
+      .then(allPokemons => this.setState({ allPokemons: allPokemons }))
+      .catch(e => console.error(e))
+  }
 
-
-addPokemon = (pokemon) => {
-    this.setState({ allPokemons: [pokemon, ...this.state.allPokemons] })
-}
-
-handleSearchChange = (e, { value }) => {
+  handleSearchChange = (e, { value }) => {
     this.setState({ searchTerm: value })
   }
 
-render() {
-    const filteredPokemons = this.state.allPokemons.filter(p => p.name.includes(this.state.searchTerm))
-    return(
-            <div>
-                <h1>Pokemon Searcher</h1><br/>
-                <Search onSearchChange={_.debounce(this.handleSearchChange, 500)} showNoResults={false} />
+  addPokemon = pokemon => {
+    this.setState({ allPokemons: [pokemon, ...this.state.allPokemons] })
+  }
 
-                <PokemonForm
-                    addPokemon={this.addPokemon}
-                />
-                <PokemonCollection
-                    allPokemons={filteredPokemons}
-                />
-            </div>
-        )
-    }
+  render() {
+    const desiredPokemon = this.state.allPokemons.filter(pokemon => pokemon.name.toLowerCase().includes(this.state.searchTerm.toLowerCase()));
+    return (
+      <div>
+        <h1>Pokemon Searcher</h1>
+        <Search 
+            onSearchChange={_.debounce(this.handleSearchChange, 500)} 
+            showNoResults={false} 
+        />
+        <PokemonForm addPokemon={this.addPokemon} />
+        <PokemonCollection pokemon={desiredPokemon} />
+      </div>
+    )
+  }
 }
 
-export default PokemonIndex;
+export default PokemonIndex

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Form } from 'semantic-ui-react';
 
-export default function PokemonForm({ addPokemon }) {
+const PokemonForm = ({ addPokemon }) => {
     const [name, setName] = useState('');
     const [hp, setHp] = useState('');
     const [frontUrl, setFrontUrl] = useState('');
@@ -82,3 +82,5 @@ export default function PokemonForm({ addPokemon }) {
       </div>
     )
 }
+
+export default PokemonForm;

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Card } from 'semantic-ui-react';
 
-export default function PokemonCard({ pokemon }) {
+const PokemonCard = ({ pokemon }) => {
     const { name, stats } = pokemon;
     const [flipped, setFlipped] = useState(true);
     const hpToDisplay = () => { return stats.find(stat => stat.name === 'hp').value };
@@ -13,7 +13,10 @@ export default function PokemonCard({ pokemon }) {
     return(
         <Card>
             <div>
-                <div onClick={() => toggleFlipped()} className="image">
+                <div 
+                    onClick={() => toggleFlipped()} 
+                    className="image"
+                >
                     <img src={flipped === true ?  frontPokemon : backPokemon} alt="oh no!" />
                 </div>
                 <div className="content">
@@ -29,3 +32,5 @@ export default function PokemonCard({ pokemon }) {
         </Card>
     )
 }
+
+export default PokemonCard;
